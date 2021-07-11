@@ -15,7 +15,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 10.%{date}git%{shortcommit0}%{?dist}
+Release: 11.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -40,17 +40,18 @@ BuildRequires: pkgconfig(libavformat)
 BuildRequires: pkgconfig(libavresample)
 BuildRequires: pkgconfig(libavutil)
 BuildRequires: pkgconfig(libjpeg)
-BuildRequires: pkgconfig(libswscale)
 BuildRequires: pkgconfig(libpipewire-0.3)
+BuildRequires: pkgconfig(libpulse)
+BuildRequires: pkgconfig(libswscale)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(opus)
-BuildRequires: pkgconfig(libpulse)
+BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(xcomposite)
 BuildRequires: pkgconfig(xdamage)
 BuildRequires: pkgconfig(xext)
 BuildRequires: pkgconfig(xfixes)
-BuildRequires: pkgconfig(xrender)
 BuildRequires: pkgconfig(xrandr)
+BuildRequires: pkgconfig(xrender)
 BuildRequires: pkgconfig(xtst)
 
 BuildRequires: cmake
@@ -86,14 +87,25 @@ Provides: bundled(rnnoise) = 0~git91ef40
 Provides: bundled(sigslot) = 0~git
 Provides: bundled(spl_sqrt_floor) = 0~git
 Provides: bundled(usrsctp) = 0.9.3.0~gitbee946a
+Requires: pkgconfig(alsa)
 Requires: pkgconfig(libavcodec)
 Requires: pkgconfig(libavformat)
 Requires: pkgconfig(libavresample)
 Requires: pkgconfig(libavutil)
 Requires: pkgconfig(libjpeg)
+Requires: pkgconfig(libpipewire-0.3)
+Requires: pkgconfig(libpulse)
 Requires: pkgconfig(libswscale)
 Requires: pkgconfig(openssl)
 Requires: pkgconfig(opus)
+Requires: pkgconfig(x11)
+Requires: pkgconfig(xcomposite)
+Requires: pkgconfig(xdamage)
+Requires: pkgconfig(xext)
+Requires: pkgconfig(xfixes)
+Requires: pkgconfig(xrandr)
+Requires: pkgconfig(xrender)
+Requires: pkgconfig(xtst)
 
 %description devel
 %{summary}.
@@ -166,6 +178,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Thu Jul 29 2021 Alexey Gorgurov <alexfails@fedoraproject.org> - 0-11.20210627git91d836d
+- Fixed depedencies from libpipewire-0.3, libpulse, x11 components and ALSA.
+
 * Tue Jul 27 2021 Leigh Scott <leigh123linux@gmail.com> - 0-10.20210627git91d836d
 - Updated to latest Git snapshot.
 

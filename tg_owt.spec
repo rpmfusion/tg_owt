@@ -34,12 +34,14 @@ Source0: %{url}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
 Source1: https://chromium.googlesource.com/webm/libvpx/+archive/%{commit1}.tar.gz#/libvpx-%{shortcommit1}.tar.gz
 Source2: https://chromium.googlesource.com/libyuv/libyuv/+archive/%{commit2}.tar.gz#/libyuv-%{shortcommit2}.tar.gz
 
+BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(libavcodec)
 BuildRequires: pkgconfig(libavformat)
 BuildRequires: pkgconfig(libavresample)
 BuildRequires: pkgconfig(libavutil)
 BuildRequires: pkgconfig(libjpeg)
 BuildRequires: pkgconfig(libswscale)
+BuildRequires: pkgconfig(libpipewire-0.3)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(opus)
 

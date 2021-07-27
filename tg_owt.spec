@@ -44,6 +44,8 @@ BuildRequires: pkgconfig(libswscale)
 BuildRequires: pkgconfig(libpipewire-0.3)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(opus)
+BuildRequires: pkgconfig(libpulse)
+
 
 BuildRequires: cmake
 BuildRequires: gcc

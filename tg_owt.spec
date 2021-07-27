@@ -45,7 +45,13 @@ BuildRequires: pkgconfig(libpipewire-0.3)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(opus)
 BuildRequires: pkgconfig(libpulse)
-
+BuildRequires: pkgconfig(xcomposite)
+BuildRequires: pkgconfig(xdamage)
+BuildRequires: pkgconfig(xext)
+BuildRequires: pkgconfig(xfixes)
+BuildRequires: pkgconfig(xrender)
+BuildRequires: pkgconfig(xrandr)
+BuildRequires: pkgconfig(xtst)
 
 BuildRequires: cmake
 BuildRequires: gcc

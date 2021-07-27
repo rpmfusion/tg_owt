@@ -1,21 +1,21 @@
 %undefine __cmake_in_source_build
 %global debug_package %{nil}
 
-%global commit0 2d804d2c9c5d05324c8ab22f2e6ff8306521b3c3
+%global commit0 91d836dc84a16584c6ac52b36c04c0de504d9c34
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20210321
+%global date 20210627
 
 # Git revision of libvpx...
-%global commit1 5b63f0f821e94f8072eb483014cfc33b05978bb9
+%global commit1 fc04a9491ebaaa8e2b1c7c8e0587c8a1873531d6
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
 
 # Git revision of libyuv...
-%global commit2 ad890067f661dc747a975bc55ba3767fe30d4452
+%global commit2 639dd4ea76403fb2e69df0636ce1df6a9587b004
 %global shortcommit2 %(c=%{commit2}; echo ${c:0:7})
 
 Name: tg_owt
 Version: 0
-Release: 9.%{date}git%{shortcommit0}%{?dist}
+Release: 10.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -156,6 +156,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Tue Jul 27 2021 Leigh Scott <leigh123linux@gmail.com> - 0-10.20210627git91d836d
+- Updated to latest Git snapshot.
+
 * Mon Mar 22 2021 Alexey Gorgurov <alexfails@fedoraproject.org> - 0-9.20210321git2d804d2
 - Converted to static-only library as the upstream doesn't support shared builds.
 

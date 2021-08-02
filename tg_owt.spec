@@ -6,16 +6,16 @@
 %global date 20210627
 
 # Git revision of libvpx...
-%global commit1 fc04a9491ebaaa8e2b1c7c8e0587c8a1873531d6
+%global commit1 5b63f0f821e94f8072eb483014cfc33b05978bb9
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
 
 # Git revision of libyuv...
-%global commit2 639dd4ea76403fb2e69df0636ce1df6a9587b004
+%global commit2 ad890067f661dc747a975bc55ba3767fe30d4452
 %global shortcommit2 %(c=%{commit2}; echo ${c:0:7})
 
 Name: tg_owt
 Version: 0
-Release: 11.%{date}git%{shortcommit0}%{?dist}
+Release: 12.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -178,6 +178,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Mon Aug 02 2021 Alexey Gorgurov <alexfails@fedoraproject.org> - 0-12.20210627git91d836d
+- Revert to upstream libvpx/livyuv commits
+
 * Thu Jul 29 2021 Alexey Gorgurov <alexfails@fedoraproject.org> - 0-11.20210627git91d836d
 - Fixed depedencies from libpipewire-0.3, libpulse, x11 components and ALSA.
 

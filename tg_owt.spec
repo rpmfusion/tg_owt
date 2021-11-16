@@ -1,9 +1,9 @@
 %undefine __cmake_in_source_build
 %global debug_package %{nil}
 
-%global commit0 91d836dc84a16584c6ac52b36c04c0de504d9c34
+%global commit0 d578c760dc6f1ae5f0f3bb5317b0b2ed04b79138
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20210627
+%global date 20211021
 
 # Git revision of libvpx...
 %global commit1 5b63f0f821e94f8072eb483014cfc33b05978bb9
@@ -15,7 +15,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 12.%{date}git%{shortcommit0}%{?dist}
+Release: 13.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -37,11 +37,11 @@ Source2: https://chromium.googlesource.com/libyuv/libyuv/+archive/%{commit2}.tar
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(libavcodec)
 BuildRequires: pkgconfig(libavformat)
-BuildRequires: pkgconfig(libavresample)
 BuildRequires: pkgconfig(libavutil)
 BuildRequires: pkgconfig(libjpeg)
 BuildRequires: pkgconfig(libpipewire-0.3)
 BuildRequires: pkgconfig(libpulse)
+BuildRequires: pkgconfig(libswresample)
 BuildRequires: pkgconfig(libswscale)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(opus)
@@ -61,7 +61,7 @@ BuildRequires: ninja-build
 BuildRequires: yasm
 
 # Disabling all low-memory architectures.
-ExclusiveArch: x86_64
+ExclusiveArch: x86_64 aarch64
 
 %description
 Special fork of the OpenWebRTC library for the Telegram messenger.
@@ -74,7 +74,6 @@ Provides: bundled(base64) = 0~git
 Provides: bundled(fft) = 0~git
 Provides: bundled(g711) = 0~git
 Provides: bundled(g722) = 0~git
-Provides: bundled(libevent) = 1.4.15
 Provides: bundled(libsrtp) = 2.2.0~git94ac00d
 Provides: bundled(libvpx) = 1.8.2~git%{shortcommit1}
 Provides: bundled(libwebm) = 0~git
@@ -90,11 +89,11 @@ Provides: bundled(usrsctp) = 0.9.3.0~gitbee946a
 Requires: pkgconfig(alsa)
 Requires: pkgconfig(libavcodec)
 Requires: pkgconfig(libavformat)
-Requires: pkgconfig(libavresample)
 Requires: pkgconfig(libavutil)
 Requires: pkgconfig(libjpeg)
 Requires: pkgconfig(libpipewire-0.3)
 Requires: pkgconfig(libpulse)
+Requires: pkgconfig(libswresample)
 Requires: pkgconfig(libswscale)
 Requires: pkgconfig(openssl)
 Requires: pkgconfig(opus)
@@ -137,8 +136,6 @@ cp -f -p src/third_party/usrsctp/README.chromium legal/README.usrsctp
 cp -f -p src/third_party/libvpx/source/libvpx/third_party/libwebm/LICENSE.TXT legal/LICENSE.libwebm
 cp -f -p src/third_party/libvpx/source/libvpx/third_party/libwebm/PATENTS.TXT legal/PATENTS.libwebm
 cp -f -p src/third_party/libvpx/source/libvpx/third_party/libwebm/README.libvpx legal/README.libwebm
-cp -f -p src/base/third_party/libevent/LICENSE legal/LICENSE.libevent
-cp -f -p src/base/third_party/libevent/README.chromium legal/README.libevent
 cp -f -p src/common_audio/third_party/ooura/LICENSE legal/LICENSE.ooura
 cp -f -p src/common_audio/third_party/ooura/README.chromium legal/README.ooura
 cp -f -p src/common_audio/third_party/spl_sqrt_floor/LICENSE legal/LICENSE.spl_sqrt_floor
@@ -178,6 +175,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Mon Nov 15 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-13.20211021gitd578c76
+- Updated to latest Git snapshot.
+
 * Mon Aug 02 2021 Alexey Gorgurov <alexfails@fedoraproject.org> - 0-12.20210627git91d836d
 - Revert to upstream libvpx/livyuv commits
 

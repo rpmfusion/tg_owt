@@ -54,10 +54,6 @@ BuildRequires: pkgconfig(xrandr)
 BuildRequires: pkgconfig(xrender)
 BuildRequires: pkgconfig(xtst)
 
-%if 0%{?fedora} && 0%{?fedora} > 35
-BuildRequires: openssl1.1-devel
-%endif
-
 BuildRequires: cmake
 BuildRequires: gcc
 BuildRequires: gcc-c++
@@ -109,9 +105,6 @@ Requires: pkgconfig(xfixes)
 Requires: pkgconfig(xrandr)
 Requires: pkgconfig(xrender)
 Requires: pkgconfig(xtst)
-%if 0%{?fedora} && 0%{?fedora} > 35
-Requires: openssl1.1-devel
-%endif
 
 %description devel
 %{summary}.
@@ -184,9 +177,10 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %changelog
 * Thu Dec 09 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-15.20211207gitd5c3d43
 - Updated to latest Git snapshot.
+- Build with OpenSSL 3.0 on Fedora 36+.
 
 * Tue Nov 16 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-14.20211021gitd578c76
-- Build with openssl 1.1 on Fedora 36+.
+- Build with OpenSSL 1.1 on Fedora 36+.
 
 * Mon Nov 15 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-13.20211021gitd578c76
 - Updated to latest Git snapshot.

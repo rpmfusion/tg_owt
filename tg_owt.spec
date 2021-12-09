@@ -1,9 +1,9 @@
 %undefine __cmake_in_source_build
 %global debug_package %{nil}
 
-%global commit0 d578c760dc6f1ae5f0f3bb5317b0b2ed04b79138
+%global commit0 d5c3d43b959c7e9e7d8004b9b7fdadd12ce7d589
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20211021
+%global date 20211207
 
 # Git revision of libvpx...
 %global commit1 5b63f0f821e94f8072eb483014cfc33b05978bb9
@@ -15,7 +15,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 14.%{date}git%{shortcommit0}%{?dist}
+Release: 15.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -73,15 +73,15 @@ Special fork of the OpenWebRTC library for the Telegram messenger.
 %package devel
 Summary: Development files for %{name}
 Provides: %{name}-static%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides: bundled(abseil-cpp) = 0~gitfba8a31
+Provides: bundled(abseil-cpp) = 0~git39f46fa
 Provides: bundled(base64) = 0~git
 Provides: bundled(fft) = 0~git
-Provides: bundled(g711) = 0~git
-Provides: bundled(g722) = 0~git
+Provides: bundled(g711) = 1.1~git
+Provides: bundled(g722) = 1.14~git
 Provides: bundled(libsrtp) = 2.2.0~git94ac00d
 Provides: bundled(libvpx) = 1.8.2~git%{shortcommit1}
-Provides: bundled(libwebm) = 0~git
-Provides: bundled(libyuv) = 0~git%{shortcommit2}
+Provides: bundled(libwebm) = 0~git37d9b86
+Provides: bundled(libyuv) = 1767~git%{shortcommit2}
 Provides: bundled(ooura) = 0~git
 Provides: bundled(openh264) = 1.10.0~git6f26bce
 Provides: bundled(pffft) = 0~git483453d
@@ -182,6 +182,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Thu Dec 09 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-15.20211207gitd5c3d43
+- Updated to latest Git snapshot.
+
 * Tue Nov 16 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-14.20211021gitd578c76
 - Build with openssl 1.1 on Fedora 36+.
 

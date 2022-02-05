@@ -27,6 +27,9 @@ URL: https://github.com/desktop-app/%{name}
 Source0: %{url}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
 Source1: https://chromium.googlesource.com/libyuv/libyuv/+archive/%{commit1}.tar.gz#/libyuv-%{shortcommit1}.tar.gz
 
+# https://github.com/desktop-app/tg_owt/pull/90
+Patch100: %{name}-gcc12-fixes.patch
+
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)
 BuildRequires: pkgconfig(gbm)

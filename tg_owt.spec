@@ -1,9 +1,9 @@
 %undefine __cmake_in_source_build
 %global debug_package %{nil}
 
-%global commit0 25c8637f5975db830cc5d74477641a8b609e248d
+%global commit0 db7d4697aba4aeb51369e25cc9f8f4b3a2bbb8e7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20220201
+%global date 20220207
 
 # Git revision of libyuv...
 %global commit1 ad890067f661dc747a975bc55ba3767fe30d4452
@@ -11,7 +11,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 16.%{date}git%{shortcommit0}%{?dist}
+Release: 17.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -169,6 +169,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Tue Feb 08 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-17.20220207gitdb7d469
+- Updated to latest Git snapshot.
+
 * Tue Feb 01 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-16.20220201git25c8637
 - Updated to latest Git snapshot.
 - Switched to packaged version of libvpx.

@@ -1,9 +1,9 @@
 %undefine __cmake_in_source_build
 %global debug_package %{nil}
 
-%global commit0 db7d4697aba4aeb51369e25cc9f8f4b3a2bbb8e7
+%global commit0 a264028ec71d9096e0aa629113c49c25db89d260
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20220207
+%global date 20220225
 
 # Git revision of libyuv...
 %global commit1 ad890067f661dc747a975bc55ba3767fe30d4452
@@ -11,7 +11,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 17.%{date}git%{shortcommit0}%{?dist}
+Release: 18.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -26,9 +26,6 @@ URL: https://github.com/desktop-app/%{name}
 
 Source0: %{url}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
 Source1: https://chromium.googlesource.com/libyuv/libyuv/+archive/%{commit1}.tar.gz#/libyuv-%{shortcommit1}.tar.gz
-
-# https://github.com/desktop-app/tg_owt/pull/90
-Patch100: %{name}-gcc12-fixes.patch
 
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)
@@ -169,6 +166,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Fri Mar 11 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-18.20220225gita264028
+- Updated to latest Git snapshot.
+
 * Tue Feb 08 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-17.20220207gitdb7d469
 - Updated to latest Git snapshot.
 

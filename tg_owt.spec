@@ -58,6 +58,11 @@ BuildRequires: gcc-c++
 BuildRequires: ninja-build
 BuildRequires: yasm
 
+# Fedora now has a stripped ffmpeg. Make sure we're using the full version.
+%if 0%{?fedora} && 0%{?fedora} >= 36
+BuildRequires: ffmpeg-devel
+%endif
+
 # Disabling all low-memory architectures.
 ExclusiveArch: x86_64 aarch64
 

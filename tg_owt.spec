@@ -1,9 +1,9 @@
 %undefine __cmake_in_source_build
 %global debug_package %{nil}
 
-%global commit0 a264028ec71d9096e0aa629113c49c25db89d260
+%global commit0 63a934db1ed212ebf8aaaa20f0010dd7b0d7b396
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20220225
+%global date 20220413
 
 # Git revision of libyuv...
 %global commit1 ad890067f661dc747a975bc55ba3767fe30d4452
@@ -11,7 +11,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 18.%{date}git%{shortcommit0}%{?dist}
+Release: 19.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -171,6 +171,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Mon Apr 18 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-19.20220413git63a934d
+- Updated to latest Git snapshot.
+
 * Fri Mar 11 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-18.20220225gita264028
 - Updated to latest Git snapshot.
 

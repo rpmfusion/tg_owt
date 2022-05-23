@@ -1,4 +1,3 @@
-%undefine __cmake_in_source_build
 %global debug_package %{nil}
 
 %global commit0 63a934db1ed212ebf8aaaa20f0010dd7b0d7b396

@@ -120,7 +120,7 @@ Requires: pkgconfig(xtst)
 %prep
 %autosetup -n %{name}-%{commit0} -p1
 tar -xf %{SOURCE1} -C src/third_party/libyuv --strip=1
-tar -xf %{SOURCE2} -C src/third_party/src/third_party/crc32c/src --strip=1
+tar -xf %{SOURCE2} -C src/third_party/crc32c/src --strip=1
 
 mkdir legal
 cp -f -p src/third_party/abseil-cpp/LICENSE legal/LICENSE.abseil-cpp

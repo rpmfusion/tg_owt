@@ -13,19 +13,33 @@ Version: 0
 Release: 21.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
-# abseil-cpp - ASL 2.0
 # libsrtp - BSD
 # libyuv - BSD
 # openh264 - BSD
 # pffft - BSD
 # rnnoise - BSD
-License: BSD and ASL 2.0
+License: BSD
 Summary: WebRTC library for the Telegram messenger
 URL: https://github.com/desktop-app/%{name}
 
 Source0: %{url}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
 Source1: https://chromium.googlesource.com/libyuv/libyuv/+archive/%{commit1}.tar.gz#/libyuv-%{shortcommit1}.tar.gz
 
+BuildRequires: pkgconfig(absl_algorithm_container)
+BuildRequires: pkgconfig(absl_bind_front)
+BuildRequires: pkgconfig(absl_config)
+BuildRequires: pkgconfig(absl_core_headers)
+BuildRequires: pkgconfig(absl_flags)
+BuildRequires: pkgconfig(absl_flags_parse)
+BuildRequires: pkgconfig(absl_flags_usage)
+BuildRequires: pkgconfig(absl_flat_hash_map)
+BuildRequires: pkgconfig(absl_inlined_vector)
+BuildRequires: pkgconfig(absl_memory)
+BuildRequires: pkgconfig(absl_optional)
+BuildRequires: pkgconfig(absl_strings)
+BuildRequires: pkgconfig(absl_synchronization)
+BuildRequires: pkgconfig(absl_type_traits)
+BuildRequires: pkgconfig(absl_variant)
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)
 BuildRequires: pkgconfig(gbm)
@@ -70,7 +84,6 @@ Special fork of the OpenWebRTC library for the Telegram messenger.
 %package devel
 Summary: Development files for %{name}
 Provides: %{name}-static%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides: bundled(abseil-cpp) = 0~git39f46fa
 Provides: bundled(base64) = 0~git
 Provides: bundled(fft) = 0~git
 Provides: bundled(g711) = 1.1~git
@@ -84,6 +97,21 @@ Provides: bundled(portaudio) = 0~git
 Provides: bundled(rnnoise) = 0~git91ef40
 Provides: bundled(sigslot) = 0~git
 Provides: bundled(spl_sqrt_floor) = 0~git
+Requires: pkgconfig(absl_algorithm_container)
+Requires: pkgconfig(absl_bind_front)
+Requires: pkgconfig(absl_config)
+Requires: pkgconfig(absl_core_headers)
+Requires: pkgconfig(absl_flags)
+Requires: pkgconfig(absl_flags_parse)
+Requires: pkgconfig(absl_flags_usage)
+Requires: pkgconfig(absl_flat_hash_map)
+Requires: pkgconfig(absl_inlined_vector)
+Requires: pkgconfig(absl_memory)
+Requires: pkgconfig(absl_optional)
+Requires: pkgconfig(absl_strings)
+Requires: pkgconfig(absl_synchronization)
+Requires: pkgconfig(absl_type_traits)
+Requires: pkgconfig(absl_variant)
 Requires: pkgconfig(alsa)
 Requires: pkgconfig(epoxy)
 Requires: pkgconfig(gbm)
@@ -116,8 +144,6 @@ Requires: pkgconfig(xtst)
 tar -xf %{SOURCE1} -C src/third_party/libyuv
 
 mkdir legal
-cp -f -p src/third_party/abseil-cpp/LICENSE legal/LICENSE.abseil-cpp
-cp -f -p src/third_party/abseil-cpp/README.chromium legal/README.abseil-cpp
 cp -f -p src/third_party/libsrtp/LICENSE legal/LICENSE.libsrtp
 cp -f -p src/third_party/libsrtp/README.chromium legal/README.libsrtp
 cp -f -p src/third_party/libyuv/LICENSE legal/LICENSE.libyuv

@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
-%global commit0 63a934db1ed212ebf8aaaa20f0010dd7b0d7b396
+%global commit0 10d5f4bf77333ef6b43516f90d2ce13273255f41
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20220413
+%global date 202200508
 
 # Git revision of libyuv...
 %global commit1 ad890067f661dc747a975bc55ba3767fe30d4452
@@ -10,7 +10,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 19.%{date}git%{shortcommit0}%{?dist}
+Release: 20.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -40,7 +40,6 @@ BuildRequires: pkgconfig(libswresample)
 BuildRequires: pkgconfig(libswscale)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(opus)
-BuildRequires: pkgconfig(usrsctp)
 BuildRequires: pkgconfig(vpx)
 BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(xcomposite)
@@ -99,7 +98,6 @@ Requires: pkgconfig(libswresample)
 Requires: pkgconfig(libswscale)
 Requires: pkgconfig(openssl)
 Requires: pkgconfig(opus)
-Requires: pkgconfig(usrsctp)
 Requires: pkgconfig(vpx)
 Requires: pkgconfig(x11)
 Requires: pkgconfig(xcomposite)
@@ -170,56 +168,11 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Fri Jun 24 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-20.202200508git10d5f4b
+- Updated to latest Git snapshot.
+
 * Mon Apr 18 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-19.20220413git63a934d
 - Updated to latest Git snapshot.
 
 * Fri Mar 11 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-18.20220225gita264028
-- Updated to latest Git snapshot.
-
-* Tue Feb 08 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-17.20220207gitdb7d469
-- Updated to latest Git snapshot.
-
-* Tue Feb 01 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-16.20220201git25c8637
-- Updated to latest Git snapshot.
-- Switched to packaged version of libvpx.
-- Switched to packaged version of usrsctp.
-
-* Thu Dec 09 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-15.20211207gitd5c3d43
-- Updated to latest Git snapshot.
-- Build with OpenSSL 3.0 on Fedora 36+.
-
-* Tue Nov 16 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-14.20211021gitd578c76
-- Build with OpenSSL 1.1 on Fedora 36+.
-
-* Mon Nov 15 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-13.20211021gitd578c76
-- Updated to latest Git snapshot.
-
-* Mon Aug 02 2021 Alexey Gorgurov <alexfails@fedoraproject.org> - 0-12.20210627git91d836d
-- Revert to upstream libvpx/livyuv commits
-
-* Thu Jul 29 2021 Alexey Gorgurov <alexfails@fedoraproject.org> - 0-11.20210627git91d836d
-- Fixed depedencies from libpipewire-0.3, libpulse, x11 components and ALSA.
-
-* Tue Jul 27 2021 Leigh Scott <leigh123linux@gmail.com> - 0-10.20210627git91d836d
-- Updated to latest Git snapshot.
-
-* Mon Mar 22 2021 Alexey Gorgurov <alexfails@fedoraproject.org> - 0-9.20210321git2d804d2
-- Converted to static-only library as the upstream doesn't support shared builds.
-
-* Sat Mar 20 2021 Alexey Gorgurov <alexfails@fedoraproject.org> - 0-8.20210321git2d804d2
-- Updated to latest Git snapshot.
-
-* Wed Feb 24 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-7.20210203gita198773
-- Updated to latest Git snapshot.
-
-* Thu Feb 04 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0-6.20210124gitbe23804
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
-
-* Mon Feb 01 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 0-5.20210124gitbe23804
-- Updated to latest Git snapshot.
-
-* Wed Dec 23 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 0-4.20201218git6eaebec
-- Updated to latest Git snapshot.
-
-* Fri Nov 20 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 0-3.20201112git10b988a
 - Updated to latest Git snapshot.

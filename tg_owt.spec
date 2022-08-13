@@ -14,7 +14,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 22.%{date}git%{shortcommit0}%{?dist}
+Release: 23.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -61,9 +61,14 @@ BuildRequires: gcc-c++
 BuildRequires: ninja-build
 BuildRequires: yasm
 
-# Fedora now has a stripped ffmpeg. Make sure we're using the full version.
+# Telegram Desktop has major issues when built against ffmpeg 5.x:
+# https://bugzilla.rpmfusion.org/show_bug.cgi?id=6273
+# Upstream refuses to fix this issue:
+# https://github.com/telegramdesktop/tdesktop/issues/24855
 %if 0%{?fedora} && 0%{?fedora} >= 36
-BuildRequires: ffmpeg-devel
+BuildRequires: compat-ffmpeg4-devel
+BuildConflicts: ffmpeg-devel
+BuildConflicts: ffmpeg-free-devel
 %endif
 
 # Disabling all low-memory architectures.
@@ -177,15 +182,12 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Sat Aug 13 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-23.20220508git10d5f4b
+- Rebuilt against compat-ffmpeg4 to mitigate RFBZ#6273.
+
 * Mon Aug 08 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0-22.20220508git10d5f4b
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1
 
 * Sat Jun 25 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-21.20220508git10d5f4b
-- Updated to latest Git snapshot.
-
-* Mon Apr 18 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-19.20220413git63a934d
-- Updated to latest Git snapshot.
-
-* Fri Mar 11 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-18.20220225gita264028
 - Updated to latest Git snapshot.

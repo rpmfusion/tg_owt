@@ -34,17 +34,6 @@ Source2: https://github.com/google/crc32c/archive/%{commit2}/crc32c-%{shortcommi
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)
 BuildRequires: pkgconfig(gbm)
-# Telegram Desktop has major issues when built against ffmpeg 5.x:
-# https://bugzilla.rpmfusion.org/show_bug.cgi?id=6273
-# Upstream refuses to fix this issue:
-# https://github.com/telegramdesktop/tdesktop/issues/24855
-%if 0%{?fedora} && 0%{?fedora} >= 36
-BuildRequires: compat-ffmpeg4-devel
-%else
-BuildRequires: pkgconfig(libavcodec)
-BuildRequires: pkgconfig(libavformat)
-BuildRequires: pkgconfig(libavutil)
-%endif
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(libjpeg)
 BuildRequires: pkgconfig(libpipewire-0.3)
@@ -69,6 +58,17 @@ BuildRequires: gcc-c++
 BuildRequires: ninja-build
 BuildRequires: yasm
 
+# Telegram Desktop has major issues when built against ffmpeg 5.x:
+# https://bugzilla.rpmfusion.org/show_bug.cgi?id=6273
+# Upstream refuses to fix this issue:
+# https://github.com/telegramdesktop/tdesktop/issues/24855
+%if 0%{?fedora} && 0%{?fedora} >= 36
+BuildRequires: compat-ffmpeg4-devel
+%else
+BuildRequires: pkgconfig(libavcodec)
+BuildRequires: pkgconfig(libavformat)
+BuildRequires: pkgconfig(libavutil)
+%endif
 
 # Disabling all low-memory architectures.
 ExclusiveArch: x86_64 aarch64
@@ -97,9 +97,6 @@ Provides: bundled(spl_sqrt_floor) = 0~git
 Requires: pkgconfig(alsa)
 Requires: pkgconfig(epoxy)
 Requires: pkgconfig(gbm)
-Requires: pkgconfig(libavcodec)
-Requires: pkgconfig(libavformat)
-Requires: pkgconfig(libavutil)
 Requires: pkgconfig(libdrm)
 Requires: pkgconfig(libjpeg)
 Requires: pkgconfig(libpipewire-0.3)
@@ -117,6 +114,14 @@ Requires: pkgconfig(xfixes)
 Requires: pkgconfig(xrandr)
 Requires: pkgconfig(xrender)
 Requires: pkgconfig(xtst)
+
+%if 0%{?fedora} && 0%{?fedora} >= 36
+Requires: compat-ffmpeg4-devel
+%else
+Requires: pkgconfig(libavcodec)
+Requires: pkgconfig(libavformat)
+Requires: pkgconfig(libavutil)
+%endif
 
 %description devel
 %{summary}.

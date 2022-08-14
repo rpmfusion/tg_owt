@@ -14,7 +14,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 24.%{date}git%{shortcommit0}%{?dist}
+Release: 25.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -38,7 +38,6 @@ BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(libjpeg)
 BuildRequires: pkgconfig(libpipewire-0.3)
 BuildRequires: pkgconfig(libpulse)
-BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(opus)
 BuildRequires: pkgconfig(vpx)
 BuildRequires: pkgconfig(x11)
@@ -69,6 +68,14 @@ BuildRequires: pkgconfig(libavformat)
 BuildRequires: pkgconfig(libavutil)
 BuildRequires: pkgconfig(libswresample)
 BuildRequires: pkgconfig(libswscale)
+%endif
+
+# Video calls doesn't work when built against openssl 3.0:
+# https://github.com/telegramdesktop/tdesktop/issues/24698
+%if 0%{?fedora} && 0%{?fedora} >= 36
+BuildRequires: openssl1.1-devel
+%else
+BuildRequires: pkgconfig(openssl)
 %endif
 
 # Disabling all low-memory architectures.
@@ -102,7 +109,6 @@ Requires: pkgconfig(libdrm)
 Requires: pkgconfig(libjpeg)
 Requires: pkgconfig(libpipewire-0.3)
 Requires: pkgconfig(libpulse)
-Requires: pkgconfig(openssl)
 Requires: pkgconfig(opus)
 Requires: pkgconfig(vpx)
 Requires: pkgconfig(x11)
@@ -122,6 +128,12 @@ Requires: pkgconfig(libavformat)
 Requires: pkgconfig(libavutil)
 Requires: pkgconfig(libswresample)
 Requires: pkgconfig(libswscale)
+%endif
+
+%if 0%{?fedora} && 0%{?fedora} >= 36
+Requires: openssl1.1-devel
+%else
+Requires: pkgconfig(openssl)
 %endif
 
 %description devel
@@ -192,12 +204,11 @@ export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig/"
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Sun Aug 14 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-25.20220508git10d5f4b
+- Rebuilt against openssl1.1 to mitigate issues with video calls.
+
 * Sun Aug 14 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-24.20220508git10d5f4b
 - Rebuilt against compat-ffmpeg4 to mitigate RFBZ#6273.
 
 * Sat Aug 13 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-23.20220508git10d5f4b
 - Rebuilt.
-
-* Mon Aug 08 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0-22.20220508git10d5f4b
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
-  5.1

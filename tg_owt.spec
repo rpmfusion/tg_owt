@@ -14,7 +14,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 23.%{date}git%{shortcommit0}%{?dist}
+Release: 24.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -34,15 +34,10 @@ Source2: https://github.com/google/crc32c/archive/%{commit2}/crc32c-%{shortcommi
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)
 BuildRequires: pkgconfig(gbm)
-BuildRequires: pkgconfig(libavcodec)
-BuildRequires: pkgconfig(libavformat)
-BuildRequires: pkgconfig(libavutil)
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(libjpeg)
 BuildRequires: pkgconfig(libpipewire-0.3)
 BuildRequires: pkgconfig(libpulse)
-BuildRequires: pkgconfig(libswresample)
-BuildRequires: pkgconfig(libswscale)
 BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(opus)
 BuildRequires: pkgconfig(vpx)
@@ -61,9 +56,19 @@ BuildRequires: gcc-c++
 BuildRequires: ninja-build
 BuildRequires: yasm
 
-# Fedora now has a stripped ffmpeg. Make sure we're using the full version.
+# Telegram Desktop has major issues when built against ffmpeg 5.x:
+# https://bugzilla.rpmfusion.org/show_bug.cgi?id=6273
+# Upstream refuses to fix this issue:
+# https://github.com/telegramdesktop/tdesktop/issues/24855
+# https://github.com/telegramdesktop/tdesktop/issues/23899
 %if 0%{?fedora} && 0%{?fedora} >= 36
-BuildRequires: ffmpeg-devel
+BuildRequires: compat-ffmpeg4-devel
+%else
+BuildRequires: pkgconfig(libavcodec)
+BuildRequires: pkgconfig(libavformat)
+BuildRequires: pkgconfig(libavutil)
+BuildRequires: pkgconfig(libswresample)
+BuildRequires: pkgconfig(libswscale)
 %endif
 
 # Disabling all low-memory architectures.
@@ -93,15 +98,10 @@ Provides: bundled(spl_sqrt_floor) = 0~git
 Requires: pkgconfig(alsa)
 Requires: pkgconfig(epoxy)
 Requires: pkgconfig(gbm)
-Requires: pkgconfig(libavcodec)
-Requires: pkgconfig(libavformat)
-Requires: pkgconfig(libavutil)
 Requires: pkgconfig(libdrm)
 Requires: pkgconfig(libjpeg)
 Requires: pkgconfig(libpipewire-0.3)
 Requires: pkgconfig(libpulse)
-Requires: pkgconfig(libswresample)
-Requires: pkgconfig(libswscale)
 Requires: pkgconfig(openssl)
 Requires: pkgconfig(opus)
 Requires: pkgconfig(vpx)
@@ -113,6 +113,16 @@ Requires: pkgconfig(xfixes)
 Requires: pkgconfig(xrandr)
 Requires: pkgconfig(xrender)
 Requires: pkgconfig(xtst)
+
+%if 0%{?fedora} && 0%{?fedora} >= 36
+Requires: compat-ffmpeg4-devel
+%else
+Requires: pkgconfig(libavcodec)
+Requires: pkgconfig(libavformat)
+Requires: pkgconfig(libavutil)
+Requires: pkgconfig(libswresample)
+Requires: pkgconfig(libswscale)
+%endif
 
 %description devel
 %{summary}.
@@ -156,6 +166,10 @@ cp -f -p src/rtc_base/third_party/sigslot/LICENSE legal/LICENSE.sigslot
 cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 
 %build
+%if 0%{?fedora} && 0%{?fedora} >= 36
+export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig/"
+%endif
+
 # CMAKE_BUILD_TYPE should always be Release due to some hardcoded checks.
 # Warning: Building as a shared library is not supported by upstream.
 %cmake -G Ninja \
@@ -177,12 +191,12 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Sun Aug 14 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-24.20220508git10d5f4b
+- Rebuilt against compat-ffmpeg4 to mitigate RFBZ#6273.
+
 * Sat Aug 13 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-23.20220508git10d5f4b
 - Rebuilt.
 
 * Mon Aug 08 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0-22.20220508git10d5f4b
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1
-
-* Sat Jun 25 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-21.20220508git10d5f4b
-- Updated to latest Git snapshot.

@@ -166,6 +166,7 @@ cp -f -p src/rtc_base/third_party/sigslot/LICENSE legal/LICENSE.sigslot
 cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 
 %build
+# Setting pkgconfig path for compat-ffmpeg4...
 %if 0%{?fedora} && 0%{?fedora} >= 36
 export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig/"
 %endif

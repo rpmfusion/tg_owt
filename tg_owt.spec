@@ -14,7 +14,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 25.%{date}git%{shortcommit0}%{?dist}
+Release: 26.%{date}git%{shortcommit0}%{?dist}
 
 # Main project - BSD
 # abseil-cpp - ASL 2.0
@@ -199,11 +199,11 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Fri Sep 30 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-26.20220508git10d5f4b
+- Rebuilt due to compat-ffmpeg4 path changes.
+
 * Sun Aug 14 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-25.20220508git10d5f4b
 - Rebuilt against openssl1.1 to mitigate issues with video calls.
 
 * Sun Aug 14 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-24.20220508git10d5f4b
 - Rebuilt against compat-ffmpeg4 to mitigate RFBZ#6273.
-
-* Sat Aug 13 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-23.20220508git10d5f4b
-- Rebuilt.

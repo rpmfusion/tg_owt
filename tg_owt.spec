@@ -16,14 +16,20 @@ Name: tg_owt
 Version: 0
 Release: 26.%{date}git%{shortcommit0}%{?dist}
 
-# Main project - BSD
-# abseil-cpp - ASL 2.0
-# libsrtp - BSD
-# libyuv - BSD
-# openh264 - BSD
-# pffft - BSD
-# rnnoise - BSD
-License: BSD and ASL 2.0
+# Library and 3rd-party bundled modules licensing:
+# * tg_owt - BSD-3-Clause -- main tarball;
+# * abseil-cpp - Apache-2.0 -- static dependency;
+# * base64 - LicenseRef-Fedora-Public-Domain -- static dependency;
+# * crc32c - BSD-3-Clause -- static dependency;
+# * libsrtp - BSD-3-Clause -- static dependency;
+# * libyuv - BSD-3-Clause -- static dependency;
+# * openh264 - BSD-2-Clause -- static dependency;
+# * pffft - BSD-3-Clause -- static dependency;
+# * portaudio - MIT -- static dependency;
+# * rnnoise - BSD-3-Clause -- static dependency;
+# * sigslot - LicenseRef-Fedora-Public-Domain -- static dependency;
+# * spl_sqrt_floor - LicenseRef-Fedora-Public-Domain -- static dependency.
+License: BSD-3-Clause AND BSD-2-Clause AND Apache-2.0 AND MIT AND LicenseRef-Fedora-Public-Domain
 Summary: WebRTC library for the Telegram messenger
 URL: https://github.com/desktop-app/%{name}
 

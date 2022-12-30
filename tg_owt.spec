@@ -1,20 +1,24 @@
 %global debug_package %{nil}
 
-%global commit0 10d5f4bf77333ef6b43516f90d2ce13273255f41
+%global commit0 1eab2d736a2fecce01686689b72e39ad8c314ebb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20220508
+%global date 20221230
 
 # Git revision of libyuv...
-%global commit1 ad890067f661dc747a975bc55ba3767fe30d4452
+%global commit1 00950840d1c9bcbb3eb6ebc5aac5793e71166c8b
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
 
 # Git revision of crc32c...
 %global commit2 21fc8ef30415a635e7351ffa0e5d5367943d4a94
 %global shortcommit2 %(c=%{commit2}; echo ${c:0:7})
 
+# Git revision of abseil-cpp...
+%global commit3 8c0b94e793a66495e0b1f34a5eb26bd7dc672db0
+%global shortcommit3 %(c=%{commit3}; echo ${c:0:7})
+
 Name: tg_owt
 Version: 0
-Release: 26.%{date}git%{shortcommit0}%{?dist}
+Release: 27.%{date}git%{shortcommit0}%{?dist}
 
 # Library and 3rd-party bundled modules licensing:
 # * tg_owt - BSD-3-Clause -- main tarball;
@@ -36,6 +40,7 @@ URL: https://github.com/desktop-app/%{name}
 Source0: %{url}/archive/%{commit0}/%{name}-%{shortcommit0}.tar.gz
 Source1: https://gitlab.com/chromiumsrc/libyuv/-/archive/%{commit1}/libyuv-%{shortcommit1}.tar.gz
 Source2: https://github.com/google/crc32c/archive/%{commit2}/crc32c-%{shortcommit2}.tar.gz
+Source3: https://github.com/abseil/abseil-cpp/archive/%{commit3}/abseil-cpp-%{shortcommit3}.tar.gz
 
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)
@@ -93,14 +98,14 @@ Special fork of the OpenWebRTC library for the Telegram messenger.
 %package devel
 Summary: Development files for %{name}
 Provides: %{name}-static%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides: bundled(abseil-cpp) = 0~git39f46fa
+Provides: bundled(abseil-cpp) = 20220623.1~git%{shortcommit3}
 Provides: bundled(crc32c) = 1.1.0~git%{shortcommit2}
 Provides: bundled(base64) = 0~git
 Provides: bundled(fft) = 0~git
 Provides: bundled(g711) = 1.1~git
 Provides: bundled(g722) = 1.14~git
 Provides: bundled(libsrtp) = 2.2.0~git94ac00d
-Provides: bundled(libyuv) = 1767~git%{shortcommit1}
+Provides: bundled(libyuv) = 1845~git%{shortcommit1}
 Provides: bundled(ooura) = 0~git
 Provides: bundled(openh264) = 1.10.0~git6f26bce
 Provides: bundled(pffft) = 0~git483453d
@@ -149,10 +154,11 @@ Requires: pkgconfig(openssl)
 %autosetup -n %{name}-%{commit0} -p1
 tar -xf %{SOURCE1} -C src/third_party/libyuv --strip=1
 tar -xf %{SOURCE2} -C src/third_party/crc32c/src --strip=1
+tar -xf %{SOURCE3} -C src/third_party/abseil-cpp --strip=1
 
 mkdir legal
 cp -f -p src/third_party/abseil-cpp/LICENSE legal/LICENSE.abseil-cpp
-cp -f -p src/third_party/abseil-cpp/README.chromium legal/README.abseil-cpp
+cp -f -p src/third_party/abseil-cpp/README.md legal/README.abseil-cpp
 cp -f -p src/third_party/crc32c/src/LICENSE legal/LICENSE.crc32c
 cp -f -p src/third_party/crc32c/src/README.md legal/README.crc32c
 cp -f -p src/third_party/libsrtp/LICENSE legal/LICENSE.libsrtp
@@ -205,6 +211,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Fri Dec 30 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-27.20221230git1eab2d7
+- Updated to 1eab2d736a2fecce01686689b72e39ad8c314ebb snapshot.
+
 * Fri Sep 30 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-26.20220508git10d5f4b
 - Rebuilt due to compat-ffmpeg4 path changes.
 

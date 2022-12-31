@@ -1,4 +1,6 @@
 %global debug_package %{nil}
+%global legacy_ffmpeg 1
+%global legacy_openssl 1
 
 %global commit0 1eab2d736a2fecce01686689b72e39ad8c314ebb
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
@@ -71,7 +73,7 @@ BuildRequires: yasm
 # Upstream refuses to fix this issue:
 # https://github.com/telegramdesktop/tdesktop/issues/24855
 # https://github.com/telegramdesktop/tdesktop/issues/23899
-%if 0%{?fedora} && 0%{?fedora} >= 36
+%if %{legacy_ffmpeg}
 BuildRequires: compat-ffmpeg4-devel
 %else
 BuildRequires: pkgconfig(libavcodec)
@@ -83,7 +85,7 @@ BuildRequires: pkgconfig(libswscale)
 
 # Video calls doesn't work when built against openssl 3.0:
 # https://github.com/telegramdesktop/tdesktop/issues/24698
-%if 0%{?fedora} && 0%{?fedora} >= 36
+%if %{legacy_openssl}
 BuildRequires: openssl1.1-devel
 %else
 BuildRequires: pkgconfig(openssl)
@@ -131,7 +133,7 @@ Requires: pkgconfig(xrandr)
 Requires: pkgconfig(xrender)
 Requires: pkgconfig(xtst)
 
-%if 0%{?fedora} && 0%{?fedora} >= 36
+%if %{legacy_ffmpeg}
 Requires: compat-ffmpeg4-devel
 %else
 Requires: pkgconfig(libavcodec)
@@ -141,7 +143,7 @@ Requires: pkgconfig(libswresample)
 Requires: pkgconfig(libswscale)
 %endif
 
-%if 0%{?fedora} && 0%{?fedora} >= 36
+%if %{legacy_openssl}
 Requires: openssl1.1-devel
 %else
 Requires: pkgconfig(openssl)

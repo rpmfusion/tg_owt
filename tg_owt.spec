@@ -81,6 +81,7 @@ BuildRequires: pkgconfig(libavformat)
 BuildRequires: pkgconfig(libavutil)
 BuildRequires: pkgconfig(libswresample)
 BuildRequires: pkgconfig(libswscale)
+BuildRequires: ffmpeg-devel
 %endif
 
 # Video calls doesn't work when built against openssl 3.0:
@@ -141,6 +142,7 @@ Requires: pkgconfig(libavformat)
 Requires: pkgconfig(libavutil)
 Requires: pkgconfig(libswresample)
 Requires: pkgconfig(libswscale)
+Requires: ffmpeg-devel
 %endif
 
 %if %{legacy_openssl}

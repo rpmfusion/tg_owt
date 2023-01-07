@@ -2,9 +2,9 @@
 %global legacy_ffmpeg 1
 %global legacy_openssl 1
 
-%global commit0 1eab2d736a2fecce01686689b72e39ad8c314ebb
+%global commit0 5098730b9eb6173f0b52068fe2555b7c1015123a
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20221230
+%global date 20230105
 
 # Git revision of libyuv...
 %global commit1 00950840d1c9bcbb3eb6ebc5aac5793e71166c8b
@@ -20,7 +20,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 27.%{date}git%{shortcommit0}%{?dist}
+Release: 28.%{date}git%{shortcommit0}%{?dist}
 
 # Library and 3rd-party bundled modules licensing:
 # * tg_owt - BSD-3-Clause -- main tarball;
@@ -215,6 +215,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Sat Jan 07 2023 Vitaly Zaitsev <vitaly@easycoding.org> - 0-28.20230105git5098730
+- Switched to 5098730b9eb6173f0b52068fe2555b7c1015123a snapshot.
+
 * Fri Dec 30 2022 Vitaly Zaitsev <vitaly@easycoding.org> - 0-27.20221230git1eab2d7
 - Updated to 1eab2d736a2fecce01686689b72e39ad8c314ebb snapshot.
 

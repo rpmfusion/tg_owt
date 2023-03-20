@@ -1,10 +1,10 @@
 %global debug_package %{nil}
-%global legacy_ffmpeg 1
-%global legacy_openssl 1
+%global legacy_ffmpeg 0
+%global legacy_openssl 0
 
-%global commit0 5098730b9eb6173f0b52068fe2555b7c1015123a
+%global commit0 1a18da2ed4d5ce134e984d1586b915738e0da257
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20230105
+%global date 20230314
 
 # Git revision of libyuv...
 %global commit1 00950840d1c9bcbb3eb6ebc5aac5793e71166c8b
@@ -20,7 +20,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 28.%{date}git%{shortcommit0}%{?dist}
+Release: 29.%{date}git%{shortcommit0}%{?dist}
 
 # Library and 3rd-party bundled modules licensing:
 # * tg_owt - BSD-3-Clause -- main tarball;
@@ -77,6 +77,7 @@ BuildRequires: yasm
 BuildRequires: compat-ffmpeg4-devel
 %else
 BuildRequires: pkgconfig(libavcodec)
+BuildRequires: pkgconfig(libavfilter)
 BuildRequires: pkgconfig(libavformat)
 BuildRequires: pkgconfig(libavutil)
 BuildRequires: pkgconfig(libswresample)
@@ -138,6 +139,7 @@ Requires: pkgconfig(xtst)
 Requires: compat-ffmpeg4-devel
 %else
 Requires: pkgconfig(libavcodec)
+Requires: pkgconfig(libavfilter)
 Requires: pkgconfig(libavformat)
 Requires: pkgconfig(libavutil)
 Requires: pkgconfig(libswresample)
@@ -215,6 +217,10 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Mon Mar 20 2023 Vitaly Zaitsev <vitaly@easycoding.org> - 0-29.20230314git1a18da2
+- Switched to 1a18da2ed4d5ce134e984d1586b915738e0da257 snapshot.
+- Switched to modern ffmpeg and OpenSSL.
+
 * Sat Jan 07 2023 Vitaly Zaitsev <vitaly@easycoding.org> - 0-28.20230105git5098730
 - Switched to 5098730b9eb6173f0b52068fe2555b7c1015123a snapshot.
 

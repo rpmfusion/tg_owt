@@ -1,0 +1,50 @@
+From e450d45a4c90d0c3898b3b6d20a976aa922f9aa8 Mon Sep 17 00:00:00 2001
+From: Vitaly Zaitsev <vitaly@easycoding.org>
+Date: Mon, 20 Mar 2023 09:14:29 +0100
+Subject: [PATCH] Fixed build with GCC 13.
+
+---
+ src/modules/audio_processing/transient/file_utils.cc | 1 +
+ src/modules/audio_processing/transient/file_utils.h  | 1 +
+ src/rtc_base/third_party/base64/base64.h             | 1 +
+ 3 files changed, 3 insertions(+)
+
+diff --git a/src/modules/audio_processing/transient/file_utils.cc b/src/modules/audio_processing/transient/file_utils.cc
+index 58f99325..85a46c51 100644
+--- a/src/modules/audio_processing/transient/file_utils.cc
++++ b/src/modules/audio_processing/transient/file_utils.cc
+@@ -10,6 +10,7 @@
+ 
+ #include "modules/audio_processing/transient/file_utils.h"
+ 
++#include <cstdint>
+ #include <memory>
+ 
+ #include "rtc_base/system/file_wrapper.h"
+diff --git a/src/modules/audio_processing/transient/file_utils.h b/src/modules/audio_processing/transient/file_utils.h
+index b7483377..a6cc816b 100644
+--- a/src/modules/audio_processing/transient/file_utils.h
++++ b/src/modules/audio_processing/transient/file_utils.h
+@@ -11,6 +11,7 @@
+ #ifndef MODULES_AUDIO_PROCESSING_TRANSIENT_FILE_UTILS_H_
+ #define MODULES_AUDIO_PROCESSING_TRANSIENT_FILE_UTILS_H_
+ 
++#include <cstdint>
+ #include <string.h>
+ 
+ #include "rtc_base/system/file_wrapper.h"
+diff --git a/src/rtc_base/third_party/base64/base64.h b/src/rtc_base/third_party/base64/base64.h
+index 4190a79d..5a9285f0 100644
+--- a/src/rtc_base/third_party/base64/base64.h
++++ b/src/rtc_base/third_party/base64/base64.h
+@@ -12,6 +12,7 @@
+ #ifndef RTC_BASE_THIRD_PARTY_BASE64_BASE64_H_
+ #define RTC_BASE_THIRD_PARTY_BASE64_BASE64_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+-- 
+2.39.2
+

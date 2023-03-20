@@ -44,6 +44,9 @@ Source1: https://gitlab.com/chromiumsrc/libyuv/-/archive/%{commit1}/libyuv-%{sho
 Source2: https://github.com/google/crc32c/archive/%{commit2}/crc32c-%{shortcommit2}.tar.gz
 Source3: https://github.com/abseil/abseil-cpp/archive/%{commit3}/abseil-cpp-%{shortcommit3}.tar.gz
 
+# https://github.com/desktop-app/tg_owt/pull/118
+Patch100: %{name}-gcc13-fixes.patch
+
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)
 BuildRequires: pkgconfig(gbm)

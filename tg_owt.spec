@@ -1,6 +1,4 @@
 %global debug_package %{nil}
-%global legacy_ffmpeg 0
-%global legacy_openssl 0
 
 %global commit0 1a18da2ed4d5ce134e984d1586b915738e0da257
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
@@ -50,10 +48,17 @@ Patch100: %{name}-gcc13-fixes.patch
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)
 BuildRequires: pkgconfig(gbm)
+BuildRequires: pkgconfig(libavcodec)
+BuildRequires: pkgconfig(libavfilter)
+BuildRequires: pkgconfig(libavformat)
+BuildRequires: pkgconfig(libavutil)
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(libjpeg)
 BuildRequires: pkgconfig(libpipewire-0.3)
 BuildRequires: pkgconfig(libpulse)
+BuildRequires: pkgconfig(libswresample)
+BuildRequires: pkgconfig(libswscale)
+BuildRequires: pkgconfig(openssl)
 BuildRequires: pkgconfig(opus)
 BuildRequires: pkgconfig(vpx)
 BuildRequires: pkgconfig(x11)
@@ -66,35 +71,11 @@ BuildRequires: pkgconfig(xrender)
 BuildRequires: pkgconfig(xtst)
 
 BuildRequires: cmake
+BuildRequires: ffmpeg-devel
 BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: ninja-build
 BuildRequires: yasm
-
-# Telegram Desktop has major issues when built against ffmpeg 5.x:
-# https://bugzilla.rpmfusion.org/show_bug.cgi?id=6273
-# Upstream refuses to fix this issue:
-# https://github.com/telegramdesktop/tdesktop/issues/24855
-# https://github.com/telegramdesktop/tdesktop/issues/23899
-%if %{legacy_ffmpeg}
-BuildRequires: compat-ffmpeg4-devel
-%else
-BuildRequires: pkgconfig(libavcodec)
-BuildRequires: pkgconfig(libavfilter)
-BuildRequires: pkgconfig(libavformat)
-BuildRequires: pkgconfig(libavutil)
-BuildRequires: pkgconfig(libswresample)
-BuildRequires: pkgconfig(libswscale)
-BuildRequires: ffmpeg-devel
-%endif
-
-# Video calls doesn't work when built against openssl 3.0:
-# https://github.com/telegramdesktop/tdesktop/issues/24698
-%if %{legacy_openssl}
-BuildRequires: openssl1.1-devel
-%else
-BuildRequires: pkgconfig(openssl)
-%endif
 
 # Disabling all low-memory architectures.
 ExclusiveArch: x86_64 aarch64
@@ -123,10 +104,17 @@ Provides: bundled(spl_sqrt_floor) = 0~git
 Requires: pkgconfig(alsa)
 Requires: pkgconfig(epoxy)
 Requires: pkgconfig(gbm)
+Requires: pkgconfig(libavcodec)
+Requires: pkgconfig(libavfilter)
+Requires: pkgconfig(libavformat)
+Requires: pkgconfig(libavutil)
 Requires: pkgconfig(libdrm)
 Requires: pkgconfig(libjpeg)
 Requires: pkgconfig(libpipewire-0.3)
 Requires: pkgconfig(libpulse)
+Requires: pkgconfig(libswresample)
+Requires: pkgconfig(libswscale)
+Requires: pkgconfig(openssl)
 Requires: pkgconfig(opus)
 Requires: pkgconfig(vpx)
 Requires: pkgconfig(x11)
@@ -137,24 +125,7 @@ Requires: pkgconfig(xfixes)
 Requires: pkgconfig(xrandr)
 Requires: pkgconfig(xrender)
 Requires: pkgconfig(xtst)
-
-%if %{legacy_ffmpeg}
-Requires: compat-ffmpeg4-devel
-%else
-Requires: pkgconfig(libavcodec)
-Requires: pkgconfig(libavfilter)
-Requires: pkgconfig(libavformat)
-Requires: pkgconfig(libavutil)
-Requires: pkgconfig(libswresample)
-Requires: pkgconfig(libswscale)
 Requires: ffmpeg-devel
-%endif
-
-%if %{legacy_openssl}
-Requires: openssl1.1-devel
-%else
-Requires: pkgconfig(openssl)
-%endif
 
 %description devel
 %{summary}.

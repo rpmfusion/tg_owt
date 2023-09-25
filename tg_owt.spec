@@ -1,11 +1,11 @@
 %global debug_package %{nil}
 
-%global commit0 dcb5069ff76bd293e86928804208737e6cee2ccc
+%global commit0 3bb3d757681e6cc5135aec6529a753dc3dcdcfb9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20230501
+%global date 20230921
 
 # Git revision of libyuv...
-%global commit1 77c2121f7e6b8e694d6e908bbbe9be24214097da
+%global commit1 04821d1e7d60845525e8db55c7bcd41ef5be9406
 %global shortcommit1 %(c=%{commit1}; echo ${c:0:7})
 
 # Git revision of crc32c...
@@ -22,7 +22,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 32.%{date}git%{shortcommit0}%{?dist}
+Release: 33.%{date}git%{shortcommit0}%{?dist}
 
 # Library and 3rd-party bundled modules licensing:
 # * tg_owt - BSD-3-Clause -- main tarball;
@@ -197,6 +197,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Mon Sep 25 2023 Vasiliy Glazov <vascom2@gmail.com> - 0-32.20230501git3bb3d75
+- Switched to 3bb3d757681e6cc5135aec6529a753dc3dcdcfb9 snapshot.
+
 * Wed Aug 02 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0-32.20230501gitdcb5069
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 

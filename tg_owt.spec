@@ -48,7 +48,7 @@ Source3: https://github.com/abseil/abseil-cpp/archive/%{commit3}/abseil-cpp-%{sh
 Source4: https://github.com/cisco/libsrtp/archive/%{commit4}/libsrtp-%{shortcommit4}.tar.gz
 
 # https://github.com/desktop-app/tg_owt/pull/118
-Patch100: %{name}-gcc13-fixes.patch
+#Patch100: %{name}-gcc13-fixes.patch
 
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)

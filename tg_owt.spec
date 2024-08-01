@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
-%global commit0 3bb3d757681e6cc5135aec6529a753dc3dcdcfb9
+%global commit0 e9d103e2480e0983bf464debc371b049cdd83648
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20230921
+%global date 20240730
 
 # Git revision of libyuv...
 %global commit1 04821d1e7d60845525e8db55c7bcd41ef5be9406
@@ -13,7 +13,7 @@
 %global shortcommit2 %(c=%{commit2}; echo ${c:0:7})
 
 # Git revision of abseil-cpp...
-%global commit3 8c0b94e793a66495e0b1f34a5eb26bd7dc672db0
+%global commit3 d7aaad83b488fd62bd51c81ecf16cd938532cc0a
 %global shortcommit3 %(c=%{commit3}; echo ${c:0:7})
 
 # Git revision of libsrtp...
@@ -22,7 +22,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 34.%{date}git%{shortcommit0}%{?dist}
+Release: 35.%{date}git%{shortcommit0}%{?dist}
 
 # Library and 3rd-party bundled modules licensing:
 # * tg_owt - BSD-3-Clause -- main tarball;
@@ -74,6 +74,7 @@ BuildRequires: pkgconfig(xfixes)
 BuildRequires: pkgconfig(xrandr)
 BuildRequires: pkgconfig(xrender)
 BuildRequires: pkgconfig(xtst)
+BuildRequires: pkgconfig(openh264)
 
 BuildRequires: cmake
 BuildRequires: ffmpeg-devel
@@ -152,8 +153,6 @@ cp -f -p src/third_party/libsrtp/README.md legal/README.libsrtp
 cp -f -p src/third_party/libyuv/LICENSE legal/LICENSE.libyuv
 cp -f -p src/third_party/libyuv/PATENTS legal/PATENTS.libyuv
 cp -f -p src/third_party/libyuv/README.chromium legal/README.libyuv
-cp -f -p src/third_party/openh264/src/LICENSE legal/LICENSE.openh264
-cp -f -p src/third_party/openh264/README.chromium legal/README.openh264
 cp -f -p src/third_party/pffft/LICENSE legal/LICENSE.pffft
 cp -f -p src/third_party/pffft/README.chromium legal/README.pffft
 cp -f -p src/third_party/rnnoise/COPYING legal/LICENSE.rnnoise
@@ -197,6 +196,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Thu Aug 01 2024 Vitaly Zaitsev <vitaly@easycoding.org> - 0-35.20240730gite9d103e
+- Switched to e9d103e2480e0983bf464debc371b049cdd83648 snapshot.
+
 * Sun Feb 04 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0-34.20230921git3bb3d75
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 

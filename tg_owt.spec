@@ -196,7 +196,7 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
-* Thu Aug 01 2024 Vitaly Zaitsev <vitaly@easycoding.org> - 0-35.20240730gite9d103e
+* Thu Aug 01 2024 Vasiliy Glazov <vascom2@gmail.com> - 0-35.20240730gite9d103e
 - Switched to e9d103e2480e0983bf464debc371b049cdd83648 snapshot.
 
 * Sun Feb 04 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0-34.20230921git3bb3d75

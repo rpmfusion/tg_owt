@@ -84,7 +84,7 @@ BuildRequires: ninja-build
 BuildRequires: yasm
 
 # Disabling all low-memory architectures.
-ExclusiveArch: x86_64 aarch64
+ExclusiveArch: x86_64 aarch64 ppc64le
 
 %description
 Special fork of the OpenWebRTC library for the Telegram messenger.

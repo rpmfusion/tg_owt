@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
-%global commit0 e9d103e2480e0983bf464debc371b049cdd83648
+%global commit0 c4192e8e2e10ccb72704daa79fa108becfa57b01
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20240730
+%global date 20250501
 
 # Git revision of libyuv...
 %global commit1 04821d1e7d60845525e8db55c7bcd41ef5be9406
@@ -22,7 +22,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 36.%{date}git%{shortcommit0}%{?dist}
+Release: 37.%{date}git%{shortcommit0}%{?dist}
 
 # Library and 3rd-party bundled modules licensing:
 # * tg_owt - BSD-3-Clause -- main tarball;
@@ -196,6 +196,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Mon May 05 2025 Vasiliy Glazov <vascom2@gmail.com> - 0-37.20250501gitc4192e8
+- Switched to c4192e8e2e10ccb72704daa79fa108becfa57b01 snapshot.
+
 * Tue Jan 28 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0-36.20240730gite9d103e
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
 

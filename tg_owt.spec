@@ -22,7 +22,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 37.%{date}git%{shortcommit0}%{?dist}
+Release: 38.%{date}git%{shortcommit0}%{?dist}
 
 # Library and 3rd-party bundled modules licensing:
 # * tg_owt - BSD-3-Clause -- main tarball;
@@ -196,6 +196,9 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Sun Jul 27 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0-38.20250501gitc4192e8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_43_Mass_Rebuild
+
 * Mon May 05 2025 Vasiliy Glazov <vascom2@gmail.com> - 0-37.20250501gitc4192e8
 - Switched to c4192e8e2e10ccb72704daa79fa108becfa57b01 snapshot.
 

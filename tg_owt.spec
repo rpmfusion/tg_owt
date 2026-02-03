@@ -47,8 +47,10 @@ Source2: https://github.com/google/crc32c/archive/%{commit2}/crc32c-%{shortcommi
 Source3: https://github.com/abseil/abseil-cpp/archive/%{commit3}/abseil-cpp-%{shortcommit3}.tar.gz
 Source4: https://github.com/cisco/libsrtp/archive/%{commit4}/libsrtp-%{shortcommit4}.tar.gz
 
-# https://github.com/desktop-app/tg_owt/pull/118
-#Patch100: %{name}-gcc13-fixes.patch
+# https://github.com/desktop-app/tg_owt/commit/d888bc3f79b4aa80333d8903410fa439db5f6696
+Patch100: %{url}/commit/d888bc3f79b4aa80333d8903410fa439db5f6696.patch#/%{name}-pipewire-fixes.patch
+# https://github.com/desktop-app/tg_owt/pull/161
+Patch101: %{url}/pull/161.patch#/%{name}-gcc16-fixes.patch
 
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)

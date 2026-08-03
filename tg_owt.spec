@@ -51,6 +51,7 @@ Source4: https://github.com/cisco/libsrtp/archive/%{commit4}/libsrtp-%{shortcomm
 Patch100: %{url}/commit/d888bc3f79b4aa80333d8903410fa439db5f6696.patch#/%{name}-pipewire-fixes.patch
 # https://github.com/desktop-app/tg_owt/pull/161
 Patch101: %{url}/pull/161.patch#/%{name}-gcc16-fixes.patch
+Patch102: %{url}/commit/19d51d3c19632a63fdbe17c62f10332d978cb940.patch#/%{name}-openssl4-fixes.patch
 
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)

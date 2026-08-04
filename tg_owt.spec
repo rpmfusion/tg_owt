@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
-%global commit0 c4192e8e2e10ccb72704daa79fa108becfa57b01
+%global commit0 19d51d3c19632a63fdbe17c62f10332d978cb940
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-%global date 20250501
+%global date 20260803
 
 # Git revision of libyuv...
 %global commit1 04821d1e7d60845525e8db55c7bcd41ef5be9406
@@ -22,7 +22,7 @@
 
 Name: tg_owt
 Version: 0
-Release: 40.%{date}git%{shortcommit0}%{?dist}
+Release: 41.%{date}git%{shortcommit0}%{?dist}
 
 # Library and 3rd-party bundled modules licensing:
 # * tg_owt - BSD-3-Clause -- main tarball;
@@ -47,11 +47,8 @@ Source2: https://github.com/google/crc32c/archive/%{commit2}/crc32c-%{shortcommi
 Source3: https://github.com/abseil/abseil-cpp/archive/%{commit3}/abseil-cpp-%{shortcommit3}.tar.gz
 Source4: https://github.com/cisco/libsrtp/archive/%{commit4}/libsrtp-%{shortcommit4}.tar.gz
 
-# https://github.com/desktop-app/tg_owt/commit/d888bc3f79b4aa80333d8903410fa439db5f6696
-Patch100: %{url}/commit/d888bc3f79b4aa80333d8903410fa439db5f6696.patch#/%{name}-pipewire-fixes.patch
 # https://github.com/desktop-app/tg_owt/pull/161
-Patch101: %{url}/pull/161.patch#/%{name}-gcc16-fixes.patch
-Patch102: %{url}/commit/19d51d3c19632a63fdbe17c62f10332d978cb940.patch#/%{name}-openssl4-fixes.patch
+Patch0: %{url}/pull/161.patch#/%{name}-gcc16-fixes.patch
 
 BuildRequires: pkgconfig(alsa)
 BuildRequires: pkgconfig(epoxy)
@@ -84,7 +81,6 @@ BuildRequires: ffmpeg-devel
 BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: ninja-build
-BuildRequires: yasm
 
 # Disabling all low-memory architectures.
 ExclusiveArch: x86_64 aarch64
@@ -194,11 +190,15 @@ cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 %files devel
 %doc src/AUTHORS src/OWNERS legal/README.*
 %license LICENSE src/PATENTS legal/LICENSE.* legal/PATENTS.*
-%{_includedir}/%{name}
-%{_libdir}/cmake/%{name}
+%{_includedir}/%{name}/
+%{_libdir}/cmake/%{name}/
 %{_libdir}/lib%{name}.a
 
 %changelog
+* Tue Aug 04 2026 Leigh Scott <leigh123linux@gmail.com> - 0-41.20260803git19d51d3
+- Switched to 19d51d3c19632a63fdbe17c62f10332d978cb940 snapshot.
+- Drop unused patches
+
 * Sun Aug 02 2026 RPM Fusion Release Engineering <leigh123linux@rpmfusion.org> - 0-40.20250501gitc4192e8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_45_Mass_Rebuild
 

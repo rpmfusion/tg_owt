@@ -142,36 +142,32 @@ tar -xf %{SOURCE2} -C src/third_party/crc32c/src --strip=1
 tar -xf %{SOURCE3} -C src/third_party/abseil-cpp --strip=1
 tar -xf %{SOURCE4} -C src/third_party/libsrtp --strip=1
 
-mkdir legal
-cp -f -p src/third_party/abseil-cpp/LICENSE legal/LICENSE.abseil-cpp
-cp -f -p src/third_party/abseil-cpp/README.md legal/README.abseil-cpp
-cp -f -p src/third_party/crc32c/src/LICENSE legal/LICENSE.crc32c
-cp -f -p src/third_party/crc32c/src/README.md legal/README.crc32c
-cp -f -p src/third_party/libsrtp/LICENSE legal/LICENSE.libsrtp
-cp -f -p src/third_party/libsrtp/README.md legal/README.libsrtp
-cp -f -p src/third_party/libyuv/LICENSE legal/LICENSE.libyuv
+mkdir -p legal
+
+entries=(
+  "src/third_party/abseil-cpp:LICENSE:README.md:abseil-cpp"
+  "src/third_party/crc32c/src:LICENSE:README.md:crc32c"
+  "src/third_party/libsrtp:LICENSE:README.md:libsrtp"
+  "src/third_party/libyuv:LICENSE:README.chromium:libyuv"
+  "src/third_party/pffft:LICENSE:README.chromium:pffft"
+  "src/third_party/rnnoise:COPYING:README.chromium:rnnoise"
+  "src/common_audio/third_party/ooura:LICENSE:README.chromium:ooura"
+  "src/common_audio/third_party/spl_sqrt_floor:LICENSE:README.chromium:spl_sqrt_floor"
+  "src/modules/third_party/fft:LICENSE:README.chromium:fft"
+  "src/modules/third_party/g711:LICENSE:README.chromium:g711"
+  "src/modules/third_party/g722:LICENSE:README.chromium:g722"
+  "src/modules/third_party/portaudio:LICENSE:README.chromium:portaudio"
+  "src/rtc_base/third_party/base64:LICENSE:README.chromium:base64"
+  "src/rtc_base/third_party/sigslot:LICENSE:README.chromium:sigslot"
+)
+
+for e in "${entries[@]}"; do
+  IFS=: read -r path lic readme name <<< "$e"
+  cp -f -p "$path/$lic" "legal/LICENSE.$name"
+  cp -f -p "$path/$readme" "legal/README.$name"
+done
+
 cp -f -p src/third_party/libyuv/PATENTS legal/PATENTS.libyuv
-cp -f -p src/third_party/libyuv/README.chromium legal/README.libyuv
-cp -f -p src/third_party/pffft/LICENSE legal/LICENSE.pffft
-cp -f -p src/third_party/pffft/README.chromium legal/README.pffft
-cp -f -p src/third_party/rnnoise/COPYING legal/LICENSE.rnnoise
-cp -f -p src/third_party/rnnoise/README.chromium legal/README.rnnoise
-cp -f -p src/common_audio/third_party/ooura/LICENSE legal/LICENSE.ooura
-cp -f -p src/common_audio/third_party/ooura/README.chromium legal/README.ooura
-cp -f -p src/common_audio/third_party/spl_sqrt_floor/LICENSE legal/LICENSE.spl_sqrt_floor
-cp -f -p src/common_audio/third_party/spl_sqrt_floor/README.chromium legal/README.spl_sqrt_floor
-cp -f -p src/modules/third_party/fft/LICENSE legal/LICENSE.fft
-cp -f -p src/modules/third_party/fft/README.chromium legal/README.fft
-cp -f -p src/modules/third_party/g711/LICENSE legal/LICENSE.g711
-cp -f -p src/modules/third_party/g711/README.chromium legal/README.g711
-cp -f -p src/modules/third_party/g722/LICENSE legal/LICENSE.g722
-cp -f -p src/modules/third_party/g722/README.chromium legal/README.g722
-cp -f -p src/modules/third_party/portaudio/LICENSE legal/LICENSE.portaudio
-cp -f -p src/modules/third_party/portaudio/README.chromium legal/README.portaudio
-cp -f -p src/rtc_base/third_party/base64/LICENSE legal/LICENSE.base64
-cp -f -p src/rtc_base/third_party/base64/README.chromium legal/README.base64
-cp -f -p src/rtc_base/third_party/sigslot/LICENSE legal/LICENSE.sigslot
-cp -f -p src/rtc_base/third_party/sigslot/README.chromium legal/README.sigslot
 
 %build
 # CMAKE_BUILD_TYPE should always be Release due to some hardcoded checks.
